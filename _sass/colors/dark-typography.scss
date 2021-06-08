@@ -54,13 +54,13 @@
   /* Posts */
   --toc-highlight: rgb(116, 178, 243);
   --tag-bg: rgb(41, 40, 40);
-  --tag-hover: rgb(43, 56, 62);
+  --tag-hover: rgb(44, 204, 39);
   --tb-odd-bg: rgba(42, 47, 53, 0.52); /* odd rows of the posts' table */
   --tb-even-bg: rgb(31, 31, 34); /* even rows of the posts' table */
   --tb-border-color: var(--tb-odd-bg);
   --footnote-target-bg: rgb(63, 81, 181);
   --btn-share-color: #6c757d;
-  --btn-share-hover-color: #bfc1ca;
+  --btn-share-hover-color: rgb(44, 204, 39);
   --relate-post-date: var(--text-muted-color);
   --card-bg: rgb(39, 40, 43);
   --card-border-color: rgb(53, 53, 60);
@@ -74,7 +74,7 @@
 
   /* categories */
   --categories-border: rgb(64, 66, 69);
-  --categories-hover-bg: rgb(73, 75, 76);
+  --categories-hover-bg: rgb(44, 204, 39);
 
   /* archives */
   --timeline-node-bg: rgb(150, 152, 156);
