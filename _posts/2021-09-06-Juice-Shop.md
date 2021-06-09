@@ -174,6 +174,197 @@ xmlhttp.send()
 </script>
 ```
   
+### 2.29	Database Schema – Injection (DIFFICULT) ★★★
+GET /rest/products/search?q=apple'))UNION%20SELECT%20sql,2,3,4,5,6,7,8,9%20FROM%20sqlite_master-- HTTP/1.1
+Host: owasp-juice-shop-diego.herokuapp.com
+Connection: close
+sec-ch-ua: "Chromium";v="89", ";Not A Brand";v="99"
+Accept: application/json, text/plain, */*
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://owasp-juice-shop-diego.herokuapp.com/
+Accept-Encoding: gzip, deflate
+Accept-Language: nl-NL,nl;q=0.9,en-US;q=0.8,en;q=0.7
+
+*	Using burp we find out it is a SQLlite database
+*	Using the ‘)) after the search we can start a new query
+*	We use the UNION to start a second query
+*	%20 is a html character for “space”
+*	SELECT sql FROM sqlite_master, gives us a schema of all the different tables on the website.
+https://www.youtube.com/watch?v=0-D-e66U2Z0
+  
+### 2.30	Deluxe Fraud – Improper Input Validation ★★★
+Obtain a Deluxe Membership without paying for it.
+ ![image](https://user-images.githubusercontent.com/46396750/121341070-97ed9b80-c920-11eb-85e8-c6cfe05d4247.png)
+*	When unlocking the button for paying through the wallet
+*	I get a request with PaymentMode: “wallet”
+*	By changing the request in the repeater with “paid” we get a Deluxe Membership.
+
+  
+### 2.31	Forged Feedback – Broken Access Control ★★★
+ ![image](https://user-images.githubusercontent.com/46396750/121341124-a5a32100-c920-11eb-8ef5-06c3eca685cb.png)
+
+*	When inserting the Feedback into Burp, we can see the request being sent.
+*	Reading the Response form we see there is a value UserId.
+*	By modifying the Request and adding a UserId we can change from who the message is being sent.
+
+  ![image](https://user-images.githubusercontent.com/46396750/121341133-a76ce480-c920-11eb-9a3a-2a4c45812482.png)
+
+### 2.32	Forged Review – Broken Access Control ★★★
+![image](https://user-images.githubusercontent.com/46396750/121341174-b18ee300-c920-11eb-89d0-e1481229ecd0.png) 
+*	Same situation as the Forged Feedback.
+*	In BurpSuite I changed the “author” with my email address.
+
+  
+### 2.33	GDPR Data Erasure – Broken Authentication ★★★
+![image](https://user-images.githubusercontent.com/46396750/121341202-b9e71e00-c920-11eb-8572-83029f2a1b07.png)
+*	Right for erasure with each user.
+*	But when performing SQL injection we can connect on someone account and perform a data eras-ure
+
+  
+### 2.34	Login Jim – SQL Injection ★★★
+*	Jim@juice-sh.op ‘—
+*	Avoids putting the login password
+![image](https://user-images.githubusercontent.com/46396750/121341258-c5d2e000-c920-11eb-8354-7fa240caa3f5.png)
+
+  
+### 2.35	Login Bender – SQL Injection ★★★
+*	Bender@juice-sh.op ‘—
+![image](https://user-images.githubusercontent.com/46396750/121341293-cec3b180-c920-11eb-8b0b-b830a50fec48.png)
+  
+### 2.36	Login Amy – Sensitive Data Exposure ★★★
+*	Looking at the link: https://www.grc.com/haystack.htm
+*	We find information about possible good passwords
+*	With the knowledge from the tutorial we know amy has a boyfriend named kif
+*	D0g..................... --> K1f.....................
+
+
+### 2.37	Manipulate Basket – Broken Access Control ★★★
+When adding product to your basket you can added BasketIds from other persons. This gives the possibility to checkout with multiple baskets.
+  
+### 2.38	Payback Time – Improper Input Validation ★★★
+When adding a product to your basket you get a request for the quantity. You can change the quantity to a negative number, which gives you the possibility to have -100 in quantity. When ordering the products you actually get money back !
+![image](https://user-images.githubusercontent.com/46396750/121341363-e13deb00-c920-11eb-8838-e9ff3ffff89a.png)
+
+  
+### 2.39	Privacy Policy Inspection – Security Through Obscurity ★★★
+  
+### 2.40	Product Tampering – Broken Access Control ★★★
+When looking at the review page of a product, you get information about it. Changing the request to a PUT request on the API and only change the description information. So that when you click on the more button the href changed to owasp.slack.
+
+  
+### 2.41	Reset Jim’s Password – Broken Authentication ★★★
+Reference to Startrek.
+
+  
+### 2.42	Upload Size – Improper Input Validation ★★★
+Change the data inserted in the request with a file higher than 100kb. This gives us the possibility to upload bigger files.
+ ![image](https://user-images.githubusercontent.com/46396750/121341410-ec911680-c920-11eb-86e4-3ed04d83d235.png)
+ 
+### 2.43	Upload Type – Improper Input Validation ★★★
+For the upload type, I uploaded the file using the .exe.pdf extension, so it accepts the file on request. After setting it up in the repeater I removed the .pdf so that the .exe could be executed.
+
+  ## Challenges ★★★★
+### 2.44	 Access Log – Sensitive Data Exposure ★★★★
+https://owasp-juice-shop-diego.herokuapp.com/support/logs
+  
+### 2.45	Allowlist Bypass – Unvalidated Redirects ★★★★
+https://owasp-juice-shop-die-go.herokuapp.com/redirect?to=diegoborghgraef.be?pwnd=https://blockchain.info/address/1AbKfgvw9psQ41NbLi8kufDQTezwG8DRZm
+
+  
+### 2.46	Christmas Special – Injection ★★★★
+  ![image](https://user-images.githubusercontent.com/46396750/121341528-0c283f00-c921-11eb-96f6-42f43cab8089.png)
+
+First I createda SQL Injection using the known ‘))—request which gives me information about all the prod-ucts in the shop. We found out that the Christmas Special is id 10. With this information we created a new request when adding a product in the cart but changed the ProductId with the id 10. When added in the bas-ket we ordered the product using the – quantity exploit which gave us a free order.
+  ![image](https://user-images.githubusercontent.com/46396750/121341544-0fbbc600-c921-11eb-8f9c-cbf1f86d6464.png)
+
+
+  
+### 2.47	Easter Egg – Broken Access Control ★★★★
+ ![image](https://user-images.githubusercontent.com/46396750/121341584-18140100-c921-11eb-834c-bb3854e37214.png)
+https://owasp-juice-shop-diego.herokuapp.com/ftp/eastere.gg%2500.md
+
+We can find a lot of files in the ftp folder, but the problem is that we are only allowed to download .md & .pdf files. When modifying the request URL we added some HTML encode %25 and then added .md Now the file is available to download.
+![image](https://user-images.githubusercontent.com/46396750/121341615-1e09e200-c921-11eb-82ce-2faaf5bd3704.png)
+NULL BYTE INJECTION (%00)
+  
+### 2.48	Ephemeral Accountant – Injection ★★★★
+  
+### 2.49	Expired Coupon – Improper Input Validation ★★★★
+When looking at the JavaScript file you can find information about all the available coupons. The problem is that they are not working anymore. Because they were only available for 1 day. When changing our Operat-ing systems time to the right date and apply the coupon we can see it working.
+  ![image](https://user-images.githubusercontent.com/46396750/121341662-29f5a400-c921-11eb-8ae7-d781d290f4d8.png)
+
+  
+### 2.50	Forgotten Developer Backup – Sensitive Data Exposure ★★★★
+https://owasp-juice-shop-diego.herokuapp.com/ftp/package.json.bak%2500.md
+  
+### 2.51	Forgotten Salesman Backup – Sensitive Data Exposure ★★★★
+http://localhost:3000/ftp/coupons_2013.md.bak%2500.md
+
+  
+### 2.52	GDPR Data Theft – Sensitive Data Exposure ★★★★
+  
+### 2.53	Leaked Unsafe Product – Sensitive Data Exposure ★★★★
+  ![image](https://user-images.githubusercontent.com/46396750/121341888-632e1400-c921-11eb-9cf0-75c253aee713.png)
+
+### Typosquatting is een vorm van misbruik van het internet gebaseerd op het feit dat mensen zich weleens vergissen bij het intypen van een websiteadres. De typosquatter zet een website op, waarvan het adres (domeinnaam) slechts heel weinig verschilt van het adres van een populaire website. Alle internetgebrui-kers die dezelfde typefout of vergissing maken, komen terecht op de website van de typosquatter.
+ ![image](https://user-images.githubusercontent.com/46396750/121341908-69bc8b80-c921-11eb-83b4-d400ab69aabc.png)
+
+In the Developers backup file you find alle the dependencies used on the OWASP JuiceShop. 1 depency was not the right one. Epilogue-js is not the real epilogue. This is due to someone typosquatting.
+
+  
+### 2.55	Login Bjoern – Broken Authentication ★★★★
+  
+### 2.56	Misplaced Signature File – Sensitive Data Exposure ★★★★
+Sigma is a generic and open signature format that allows you to describe relevant log events in a straight-forward manner. The rule format is very flexible, easy to write and applicable to any type of log file. The main purpose of this project is to provide a structured form in which researchers or analysts can describe their once developed detection methods and make them shareable with others.
+
+  SIEM SIGNATURE.
+	ACCESS .YML FILE : https://owasp-juice-shop-diego.herokuapp.com/ftp/suspicious_errors.yml%2500.md
+
+  
+### 2.57	Nested Easter Egg – Cryptographic Issues ★★★★
+L2d1ci9xcmlmL25lci9mYi9zaGFhbC9ndXJsL3V2cS9uYS9ybmZncmUvcnR0L2p2Z3V2YS9ndXIvcm5mZ3JlL3J0dA== (Code found in the FTP folder)
+
+When decoding it in Base 64. You get a path. But the words do not mean anything.
+Using a online decipher tool. We found a matching deciphering technique that gave us the path we wanted. 
+
+https://owasp-juice-shop-diego.herokuapp.com/the/devs/are/so/funny/they/hid/an/easter/egg/within/the/easter/egg
+![image](https://user-images.githubusercontent.com/46396750/121341988-7f31b580-c921-11eb-8874-fc77e0c22a0d.png)
+  
+### 2.58	NoSQL Manipulation – Injection ★★★★
+https://www.netsparker.com/blog/web-security/what-is-nosql-injection/
+Target databases that do not use the sequal database model
+  ![image](https://user-images.githubusercontent.com/46396750/121342007-85c02d00-c921-11eb-9c29-345945bed789.png)
+
+
+  
+### 2.59	Poison Null Byte – Improper Input Validation ★★★★
+%2500.md
+
+  
+### 2.60	Reset Bender’s Password – Broken Authentication ★★★★
+   
+### 2.61	Reset Uvogin’s Password – Sensitive Data Exposure ★★★★
+  
+### 2.62	Steganography – Security Through Obscurity ★★★★
+Steganography, partice of concealing a message within another message or a physical object. In computer file, message, image or video is concealed within another file. 
+
+For this challenge we get a hint that we need to look for the Lorem Ipsum. We know that a Lorem Ipsum text is available on the About Us page. There we can find a slideshow of multiple pictures of users. Be-cause we are working with Steganography is used the Openstego tool to try to read each picture. Some-thing I didn’t know is that 1 image had a .png format and there we found a steganography.
+
+It was a Image of Pickle Rick! We then sended a Customer Feedback with Pickle Rick to get the challenge done.
+  ![image](https://user-images.githubusercontent.com/46396750/121342082-996b9380-c921-11eb-9c9d-f967c0c63577.png)
+
+
+  
+### MORE COMING SOON
+  
+ 
+
+
+  
 
 
   
