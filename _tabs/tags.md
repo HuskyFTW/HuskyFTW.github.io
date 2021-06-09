@@ -1,6 +1,6 @@
 ---
-layout: tags
-title: Tags
-icon: fas fa-tags
+layout: about
+title: Resources
+icon: far fa-folder-open
 order: 2
 ---
