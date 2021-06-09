@@ -1,7 +1,6 @@
 ---
-layout: about
 title: Passion
-icon: bi bi-camera
+icon: fas fa-campground
 order: 3
 ---
 
