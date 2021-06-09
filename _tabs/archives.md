@@ -1,7 +1,7 @@
 ---
-layout: archives
-title: Archives
-icon: fas fa-archive
+layout: about
+title: Passion
+icon: bi bi-camera
 order: 3
 ---
 
