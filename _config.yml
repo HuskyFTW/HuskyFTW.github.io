@@ -30,7 +30,10 @@ github:
   username: HuskyFTW             # change to your github username
 
 twitter:
-  username: Husky_SEC            # change to your twitter username
+  username: Hoosky_SEC            # change to your twitter username
+  
+ linkedin:
+  username: diego-borghgraef-690481198
 
 social:
   # Change to your full name.
@@ -39,7 +42,7 @@ social:
   email: Diego.Borghgraef@hotmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/Husky_SEC      # change to your twitter homepage
+    - https://twitter.com/Hoosky_SEC      # change to your twitter homepage
     - https://github.com/HuskyFTW       # change to your github homepage
     # Uncomment below to add more social links
     - https://www.facebook.com/diego.borghgraef/
