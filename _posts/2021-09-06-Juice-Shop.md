@@ -313,7 +313,8 @@ http://localhost:3000/ftp/coupons_2013.md.bak%2500.md
 ### 2.53	Leaked Unsafe Product – Sensitive Data Exposure ★★★★
   ![image](https://user-images.githubusercontent.com/46396750/121341888-632e1400-c921-11eb-9cf0-75c253aee713.png)
 
-### Typosquatting is een vorm van misbruik van het internet gebaseerd op het feit dat mensen zich weleens vergissen bij het intypen van een websiteadres. De typosquatter zet een website op, waarvan het adres (domeinnaam) slechts heel weinig verschilt van het adres van een populaire website. Alle internetgebrui-kers die dezelfde typefout of vergissing maken, komen terecht op de website van de typosquatter.
+### 2.54	Legacy Typosquatting – Sensitive Data Exposure ★★★★
+Typosquatting is een vorm van misbruik van het internet gebaseerd op het feit dat mensen zich weleens vergissen bij het intypen van een websiteadres. De typosquatter zet een website op, waarvan het adres (domeinnaam) slechts heel weinig verschilt van het adres van een populaire website. Alle internetgebrui-kers die dezelfde typefout of vergissing maken, komen terecht op de website van de typosquatter.
  ![image](https://user-images.githubusercontent.com/46396750/121341908-69bc8b80-c921-11eb-83b4-d400ab69aabc.png)
 
 In the Developers backup file you find alle the dependencies used on the OWASP JuiceShop. 1 depency was not the right one. Epilogue-js is not the real epilogue. This is due to someone typosquatting.
@@ -335,7 +336,6 @@ When decoding it in Base 64. You get a path. But the words do not mean anything.
 Using a online decipher tool. We found a matching deciphering technique that gave us the path we wanted. 
 
 https://owasp-juice-shop-diego.herokuapp.com/the/devs/are/so/funny/they/hid/an/easter/egg/within/the/easter/egg
-![image](https://user-images.githubusercontent.com/46396750/121341988-7f31b580-c921-11eb-8874-fc77e0c22a0d.png)
   
 ### 2.58	NoSQL Manipulation – Injection ★★★★
 https://www.netsparker.com/blog/web-security/what-is-nosql-injection/
